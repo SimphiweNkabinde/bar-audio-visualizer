@@ -1,4 +1,4 @@
-const WIDTH = window.innerWidth;
+const WIDTH = 1440;
 const HEIGHT = WIDTH * 2 / 3;
 
 const canvas = document.querySelector("canvas");
@@ -14,20 +14,16 @@ let firstClick = true;
 playPauseButton.addEventListener("click", (e) => {
     if (firstClick) {
         initialize();
+        audio.play();
         firstClick = false;
     }
-    audio.play();
+    
     e.currentTarget.classList.toggle("playing");
-    if (e.currentTarget.classList.contains("playing")) {
-        audio.pause()
-    } else {
-        audio.play()
-    }
+    if (e.currentTarget.classList.contains("playing")) audio.pause()
+    else audio.play()
 })
 
-function initialize() {
-    audio.style.display = "block";
-    
+function initialize() {    
     const audioCtx = new AudioContext();
     const analyser = audioCtx.createAnalyser();
     const source = audioCtx.createMediaElementSource(audio);
