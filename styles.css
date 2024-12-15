@@ -24,11 +24,62 @@ canvas {
     background: linear-gradient(#673ab7, #512da8);
 }
 
+.container {
+    position: relative;
+}
+
+#control-panel {
+    position: absolute;
+    bottom: 15px;
+    margin: 0 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.control-button {
+    cursor: pointer;
+    color: #ffffffa2;
+    border: 2px solid #ffffffa2;
+    border-radius: 50%;
+    padding: 0;
+    width: 40px;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+.play {
+    display: none;
+}
+
+.playing .pause {
+    display: none;
+}
+
+.playing .play {
+    display: inherit;
+}
+
 audio {
     display: none;
     margin-top: 8px;
 }
 
-audio::-webkit-media-controls-panel {
-    background-color: #ffffff;
+#audio-tracker-bar {
+    width: 100%;
+    height: 4px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#audio-tracker-bar span {
+    display: block;
+    height: 100%;
+    background-color: #ffffffa2;
+    width: 0;
+    border-radius: 6px;
 }

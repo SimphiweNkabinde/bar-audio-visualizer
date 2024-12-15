@@ -1,24 +1,32 @@
 const WIDTH = window.innerWidth;
 const HEIGHT = WIDTH * 2 / 3;
 
-const canvas = document.querySelector("canvas")
+const canvas = document.querySelector("canvas");
+const audio = document.querySelector("audio");
+const playPauseButton = document.querySelector(".control-button");
+const audioTrackBar = document.querySelector("#audio-tracker-bar span");
+
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
 const canvasCtx = canvas.getContext("2d");
 
-const audio = document.querySelector("audio");
+let firstClick = true;
+playPauseButton.addEventListener("click", (e) => {
+    if (firstClick) {
+        initialize();
+        firstClick = false;
+    }
+    audio.play();
+    e.currentTarget.classList.toggle("playing");
+    if (e.currentTarget.classList.contains("playing")) {
+        audio.pause()
+    } else {
+        audio.play()
+    }
+})
 
-const startButton = document.querySelector("button");
-
-
-startButton.addEventListener("click", (e) => {
-
+function initialize() {
     audio.style.display = "block";
-    e.target.style.display = "none";
-
-    console.log(audio.duration);
-    console.log(audio.attributes.src.value);
-    
     
     const audioCtx = new AudioContext();
     const analyser = audioCtx.createAnalyser();
@@ -29,7 +37,13 @@ startButton.addEventListener("click", (e) => {
     analyser.fftSize = 2048;
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
-
+    
+    setInterval(() =>  {
+        let duration = audio.duration
+        let currentTime = audio.currentTime
+        let percent = currentTime / duration * 100
+        audioTrackBar.style.width = `${percent.toFixed(2)}%`
+    }, 250)
 
     function draw() {
         requestAnimationFrame(draw)
@@ -55,5 +69,4 @@ startButton.addEventListener("click", (e) => {
     }
 
     draw();
-
-})
+}
