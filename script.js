@@ -3,7 +3,7 @@ const HEIGHT = WIDTH * 2 / 3;
 
 const canvas = document.querySelector("canvas");
 const audio = document.querySelector("audio");
-const playPauseButton = document.querySelector(".control-button");
+const playPauseButton = document.querySelector("button");
 const audioTrackBar = document.querySelector("#audio-tracker-bar span");
 
 canvas.width = WIDTH;

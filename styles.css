@@ -45,7 +45,7 @@ canvas {
     column-gap: 20px;
 }
 
-.control-button {
+button {
     cursor: pointer;
     color: #ffffffa2;
     border: 2px solid #ffffffa2;
