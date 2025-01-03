@@ -3,24 +3,17 @@ const HEIGHT = WIDTH * 2 / 3;
 
 const canvas = document.querySelector("canvas");
 const audio = document.querySelector("audio");
-const playPauseButton = document.querySelector("button");
-const audioTrackBar = document.querySelector("#audio-tracker-bar span");
 
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
 const canvasCtx = canvas.getContext("2d");
 
-let firstClick = true;
-playPauseButton.addEventListener("click", (e) => {
-    if (firstClick) {
-        initialize();
-        audio.play();
-        firstClick = false;
-    }
-    
-    e.currentTarget.classList.toggle("playing");
-    if (e.currentTarget.classList.contains("playing")) audio.pause()
-    else audio.play()
+const isInitialized = false;
+audio.addEventListener("play", () => {
+  if (!isInitialized) {
+    initialize();
+    isInitialized = true
+  }
 })
 
 function initialize() {    
@@ -33,13 +26,6 @@ function initialize() {
     analyser.fftSize = 2048;
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
-    
-    setInterval(() =>  {
-        let duration = audio.duration
-        let currentTime = audio.currentTime
-        let percent = currentTime / duration * 100
-        audioTrackBar.style.width = `${percent.toFixed(2)}%`
-    }, 250)
 
     function draw() {
         requestAnimationFrame(draw)
