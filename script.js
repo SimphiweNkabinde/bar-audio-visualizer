@@ -8,7 +8,7 @@ canvas.width = WIDTH;
 canvas.height = HEIGHT;
 const canvasCtx = canvas.getContext("2d");
 
-const isInitialized = false;
+let isInitialized = false;
 audio.addEventListener("play", () => {
   if (!isInitialized) {
     initialize();
