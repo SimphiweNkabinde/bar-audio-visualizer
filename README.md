@@ -18,6 +18,12 @@ Clone the repo
 open `index.html` in a browser
 
 ## Usage
+To play a different audio file, change the src attribute of the audio tag in `index.html` to the audio file path.
+
+example:
+```
+<audio crossorigin="anonymous" controls src="path/to/audio-file.mp3"></audio>
+```
 
 ![Demo](demo.gif)
 
