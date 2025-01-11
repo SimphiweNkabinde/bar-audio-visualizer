@@ -15,7 +15,7 @@ Clone the repo
 
 ## Executing program
 
-open `index.html` in a a browser
+open `index.html` in a browser
 
 ## Usage
 
